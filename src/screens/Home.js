@@ -3,9 +3,9 @@ import "./Home.css";
 import MovieCard from "../components/MovieCard";
 import TMDB from "../services/TMDB";
 
-function Home() {
+function Home({ year }) {
   useEffect(() => {
-    TMDB.discover(2016).then(res => {
+    TMDB.discover(year).then(res => {
       setResults(res);
     });
   }, []);

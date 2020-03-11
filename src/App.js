@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <Header title="Movies" />
-      <Home />
+      <Home year={2016} />
     </div>
   );
 }
