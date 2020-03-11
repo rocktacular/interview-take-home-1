@@ -1,3 +1,13 @@
+You must create a `/.env.local` file (at the root) that contains your TMDB API key.
+
+```
+REACT_APP_TMDB_API_URL = "<your api key>"
+```
+
+This key is accessed as `process.env.REACT_APP_TMDB_API_URL` in **src/services/TMDB.js**. See the [Docs](https://create-react-app.dev/docs/adding-custom-environment-variables/) for details.
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
