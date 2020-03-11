@@ -8,14 +8,21 @@ function Home({ year }) {
     TMDB.discover(year).then(res => {
       setResults(res);
     });
-  }, []);
+  }, [year]);
   const [results, setResults] = useState([]);
   return (
     <div className="home-page">
-      <h3>Home Page Stuff</h3>
       <div className="results">
         {results.map((movie, idx) => {
-          return <MovieCard key={`movie-${idx}`} title={movie.title} />;
+          return (
+            <MovieCard
+              key={`movie-${idx}`}
+              title={movie.title}
+              score={movie.popularity}
+              imageUrl={movie.poster_path}
+              releaseDate={movie.release_date}
+            />
+          );
         })}
       </div>
     </div>

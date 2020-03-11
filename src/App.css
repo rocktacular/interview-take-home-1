@@ -1,3 +1,5 @@
 .App {
   font-family: Helvetica, sans-serif;
+  color: var(--dark-text);
+  background-color: var(--light-background);
 }
