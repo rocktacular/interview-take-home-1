@@ -14,16 +14,6 @@
 .card--image {
   width: 80px;
 }
-.score {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 50%;
-  border: 2px solid var(--dark-background);
-  background-color: var(--highlight);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .button__details {
   width: 100%;
@@ -31,4 +21,7 @@
   color: var(--light-text);
   background-color: var(--dark-background);
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

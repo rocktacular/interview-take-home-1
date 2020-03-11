@@ -4,12 +4,12 @@ import MovieCard from "../components/MovieCard";
 import TMDB from "../services/TMDB";
 
 function Home({ year }) {
+  const [results, setResults] = useState([]);
   useEffect(() => {
     TMDB.discover(year).then(res => {
       setResults(res);
     });
   }, [year]);
-  const [results, setResults] = useState([]);
   return (
     <div className="home-page">
       <div className="results">
@@ -17,6 +17,7 @@ function Home({ year }) {
           return (
             <MovieCard
               key={`movie-${idx}`}
+              id={movie.id}
               title={movie.title}
               score={movie.popularity}
               imageUrl={movie.poster_path}
