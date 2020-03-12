@@ -1,16 +1,28 @@
 import React from "react";
-import "./App.css";
-import "./colors.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import Home from "./screens/Home";
+import Details from "./screens/Details";
+
+import "./App.css";
+import "./colors.css";
 
 function App() {
   return (
-    <div className="App">
-      <Header title="Movies" />
-      <Home year={2016} />
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Switch>
+          <Route path="/details/:id">
+            <Details />
+          </Route>
+          <Route path="/">
+            <Home year={2016} />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

@@ -1,17 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+
+import Score from "./Score";
 import "./MovieCard.css";
 
 const imageRoot = `https://image.tmdb.org/t/p/w500`;
 
-const roundScore = score => {
-  return Math.round(score);
-};
-
-function MovieCard({ title, score, imageUrl, releaseDate }) {
-  const clickDetails = () => {
-    console.log("details", title);
-  };
+function MovieCard({ title, score, imageUrl, releaseDate, id }) {
   return (
     <div className="card">
       <div className="card__title">{title}</div>
@@ -25,12 +21,14 @@ function MovieCard({ title, score, imageUrl, releaseDate }) {
         </div>
         <div className="card__center">
           <div>{releaseDate}</div>
-          <button className="button__details" onClick={clickDetails}>
-            DETAILS
-          </button>
+          <Link to={{ pathname: `/details/${id}`, state: { title: title } }}>
+            <div className="button__details">
+              <div>DETAILS</div>
+            </div>
+          </Link>
         </div>
         <div className="card__right">
-          <div className="score">{roundScore(score)}</div>
+          <Score score={score} />
         </div>
       </div>
     </div>
