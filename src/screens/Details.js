@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 // import "./Details.css";
 import TMDB from "../services/TMDB";
 import Score from "../components/Score";
 
-function Details({ year }) {
+function Details(props) {
   const { id } = useParams();
+  const location = useLocation();
 
   return (
     <div className="details-page">
