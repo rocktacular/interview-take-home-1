@@ -3,10 +3,9 @@ import "./Favorite.css";
 
 const Favorite = ({ isFavorite, onClick }) => {
   return (
-    <div
-      className={`favorite ${isFavorite ? "is-favorite" : ""}`}
-      onClick={onClick}
-    ></div>
+    <div className="favorite" onClick={onClick}>
+      {isFavorite ? <span className="is-favorite">★</span> : <span>☆</span>}
+    </div>
   );
 };
 
