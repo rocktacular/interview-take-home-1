@@ -3,7 +3,7 @@
   height: 4rem;
   border-radius: 50%;
   border: 2px solid var(--dark-background);
-  background-color: var(--highlight);
+  background-color: var(--primary-color);
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,0 +1,24 @@
+.details-page {
+  padding: 1rem;
+}
+
+.details__top {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-bottom: 1rem;
+}
+
+.details__info-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-bottom: 1rem;
+}
+
+.details__image {
+  width: 160px;
+  padding-right: 1rem;
+}

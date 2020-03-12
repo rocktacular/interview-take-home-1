@@ -1,0 +1,11 @@
+.favorite {
+  width: 50px;
+  height: 50px;
+  border: 2px solid var(--dark-text);
+  background-color: var(--dark-background);
+  margin-left: 1rem;
+}
+
+.is-favorite {
+  background-color: var(--highlight);
+}

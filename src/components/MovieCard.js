@@ -8,20 +8,22 @@ import "./MovieCard.css";
 const imageRoot = `https://image.tmdb.org/t/p/w500`;
 
 function MovieCard({ title, score, imageUrl, releaseDate, id }) {
+  const fullImageUrl = `${imageRoot}/${imageUrl}`;
   return (
     <div className="card">
       <div className="card__title">{title}</div>
       <div className="card__info">
         <div className="card__left">
-          <img
-            src={`${imageRoot}/${imageUrl}`}
-            className="card--image"
-            alt="Movie Poster"
-          />
+          <img src={fullImageUrl} className="card__image" alt="Movie Poster" />
         </div>
         <div className="card__center">
           <div>{releaseDate}</div>
-          <Link to={{ pathname: `/details/${id}`, state: { title: title } }}>
+          <Link
+            to={{
+              pathname: `/details/${id}`,
+              state: { title, imageUrl: fullImageUrl, score, releaseDate }
+            }}
+          >
             <div className="button__details">
               <div>DETAILS</div>
             </div>
