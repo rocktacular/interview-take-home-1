@@ -26,16 +26,17 @@ function App() {
   const [details, setDetails] = useState({});
 
   useEffect(() => {
-    TMDB.discover(year).then(res => {
-      setMovies(res);
-      // pre-populate details
-      const newDetails = {};
-      res.forEach(movie => {
-        newDetails[movie.id] = movie;
-      });
-      setDetails(newDetails);
-    });
-    // handle error with fetch?
+    TMDB.discover(year)
+      .then(res => {
+        setMovies(res);
+        // pre-populate details
+        const newDetails = {};
+        res.forEach(movie => {
+          newDetails[movie.id] = movie;
+        });
+        setDetails(newDetails);
+      })
+      .catch(err => alert(err));
   }, []);
   return (
     <Router>
