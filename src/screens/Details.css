@@ -1,5 +1,14 @@
 .details-page {
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.details-container {
+  max-width: 500px;
+  width: 100%;
 }
 
 .details__top {

@@ -22,30 +22,32 @@ function Details({ setShowBack, setTitle, details, setDetails }) {
   };
   return (
     <div className="details-page">
-      <div className="details__top">
-        {details[id] && details[id].poster_path ? (
-          <img
-            className="details__image"
-            src={`${imageRoot}/${details[id].poster_path}`}
-            alt="Movie Poster"
-          />
-        ) : null}
-
-        <div className="details__info">
-          <div className="details__info-top">
-            <Score score={details[id] && details[id].popularity} />
-            <Favorite
-              isFavorite={details[id] && details[id].favorite}
-              onClick={clickFavorite}
+      <div className="details-container">
+        <div className="details__top">
+          {details[id] && details[id].poster_path ? (
+            <img
+              className="details__image"
+              src={`${imageRoot}/${details[id].poster_path}`}
+              alt="Movie Poster"
             />
-          </div>
-          <div className="details__info-bottom">
-            <div>{details[id] && details[id].releaseDate}</div>
+          ) : null}
+
+          <div className="details__info">
+            <div className="details__info-top">
+              <Score score={details[id] && details[id].popularity} />
+              <Favorite
+                isFavorite={details[id] && details[id].favorite}
+                onClick={clickFavorite}
+              />
+            </div>
+            <div className="details__info-bottom">
+              <div>{details[id] && details[id].releaseDate}</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="details__bottom">
-        {details[id] && details[id].overview}
+        <div className="details__bottom">
+          {details[id] && details[id].overview}
+        </div>
       </div>
     </div>
   );
