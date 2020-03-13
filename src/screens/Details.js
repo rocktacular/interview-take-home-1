@@ -6,7 +6,7 @@ import Favorite from "../components/Favorite";
 
 import { imageRoot } from "../components/MovieCard";
 
-function Details({ setShowBack, setTitle, favorites, setFavorites, details }) {
+function Details({ setShowBack, setTitle, details, setDetails }) {
   // SET HEADER
   const { id } = useParams();
   useEffect(() => {
@@ -16,7 +16,9 @@ function Details({ setShowBack, setTitle, favorites, setFavorites, details }) {
 
   // HANDLERS
   const clickFavorite = () => {
-    setFavorites({ ...favorites, [id]: !favorites[id] });
+    const newDetails = { ...details };
+    newDetails[id].favorite = !newDetails[id].favorite;
+    setDetails(newDetails);
   };
   return (
     <div className="details-page">
@@ -32,7 +34,10 @@ function Details({ setShowBack, setTitle, favorites, setFavorites, details }) {
         <div className="details__info">
           <div className="details__info-top">
             <Score score={details[id] && details[id].popularity} />
-            <Favorite isFavorite={favorites[id]} onClick={clickFavorite} />
+            <Favorite
+              isFavorite={details[id] && details[id].favorite}
+              onClick={clickFavorite}
+            />
           </div>
           <div className="details__info-bottom">
             <div>{details[id] && details[id].releaseDate}</div>

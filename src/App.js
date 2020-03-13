@@ -18,29 +18,24 @@ function App() {
   const [showBack, setShowBack] = useState(false);
 
   // MOVIE LIST STATE (HOME)
+  // maintain order/sort for home page display
   const [movies, setMovies] = useState([]);
 
   // DETAILS LIST
-  // duplicate movies list into object for easy reference in /details route
+  // duplicate movies list into object for easy reference in /details route. store favorites here
   const [details, setDetails] = useState({});
 
-  // FAVORITES (DETAILS)
-  const [favorites, setFavorites] = useState({});
-
   useEffect(() => {
-    // if not already loaded, fetch movies
-    if (!movies.length) {
-      TMDB.discover(year).then(res => {
-        setMovies(res);
-        // pre-populate details
-        const newDetails = {};
-        res.forEach(movie => {
-          newDetails[movie.id] = movie;
-        });
-        setDetails(newDetails);
+    TMDB.discover(year).then(res => {
+      setMovies(res);
+      // pre-populate details
+      const newDetails = {};
+      res.forEach(movie => {
+        newDetails[movie.id] = movie;
       });
-      // handle error with fetch
-    }
+      setDetails(newDetails);
+    });
+    // handle error with fetch?
   }, []);
   return (
     <Router>
@@ -51,10 +46,9 @@ function App() {
             <Details
               setShowBack={setShowBack}
               setTitle={setTitle}
-              favorites={favorites}
-              setFavorites={setFavorites}
               movies={movies}
               details={details}
+              setDetails={setDetails}
             />
           </Route>
           <Route path="/">
