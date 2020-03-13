@@ -6,6 +6,7 @@ const roundScore = score => {
 };
 
 const Score = ({ score }) => {
+  if (!score) return null;
   return <div className="score">{roundScore(score)}</div>;
 };
 

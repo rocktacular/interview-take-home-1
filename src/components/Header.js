@@ -1,21 +1,9 @@
 import React from "react";
-import { useLocation, useHistory } from "react-router-dom";
-import { get } from "lodash";
+import { useHistory } from "react-router-dom";
 import "./Header.css";
 
-function Header() {
-  const location = useLocation();
-
-  // set title
-  let title = "Movies";
-  let showBackButton = false;
-  const titleFromState = get(location, "state.title");
-  if (titleFromState) {
-    title = titleFromState;
-    showBackButton = true;
-  }
-
-  // back button
+function Header({ title, showBack }) {
+  // back button handler
   const history = useHistory();
   const goBack = () => {
     history.goBack();
@@ -25,7 +13,7 @@ function Header() {
       <div className="header__item--side"></div>
       <div className="header__item--center">{title}</div>
       <div className="header__item--side">
-        {showBackButton ? (
+        {showBack ? (
           <div className="header__button" onClick={goBack}>
             Close
           </div>

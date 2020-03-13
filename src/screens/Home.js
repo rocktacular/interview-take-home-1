@@ -1,19 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Home.css";
 import MovieCard from "../components/MovieCard";
 import TMDB from "../services/TMDB";
 
-function Home({ year }) {
-  const [results, setResults] = useState([]);
+function Home({ year, setShowBack, setTitle, movies, setMovies }) {
   useEffect(() => {
-    TMDB.discover(year).then(res => {
-      setResults(res);
-    });
+    setTitle("Movies");
+    setShowBack(false);
+
+    // if not already loaded, fetch movies
+    if (!movies.length) {
+      TMDB.discover(year).then(res => {
+        setMovies(res);
+      });
+    }
   }, [year]);
   return (
     <div className="home-page">
       <div className="results">
-        {results.map((movie, idx) => {
+        {movies.map((movie, idx) => {
           return (
             <MovieCard
               key={`movie-${idx}`}

@@ -1,46 +1,49 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./Details.css";
-import { get } from "lodash";
 import TMDB from "../services/TMDB";
 import Score from "../components/Score";
 import Favorite from "../components/Favorite";
 
-function Details() {
+import { imageRoot } from "../components/MovieCard";
+
+function Details({ setShowBack, setTitle, favorites, setFavorites }) {
   // FETCH DATA
   const { id } = useParams();
   useEffect(() => {
+    setShowBack(true);
+    setTitle("");
     TMDB.details(id).then(res => {
       setDetails(res);
+      setTitle(res.title);
     });
-  }, []);
-
-  // ROUTE PROPS
-  const location = useLocation();
-  const imageUrl = get(location, "state.imageUrl");
-  const score = get(location, "state.score");
-  const releaseDate = get(location, "state.releaseDate");
+  }, [id]);
 
   // STATE
-  const [isFavorite, setIsFavorite] = useState(false);
   const [details, setDetails] = useState("");
 
   // HANDLERS
   const clickFavorite = () => {
-    setIsFavorite(!isFavorite);
+    setFavorites({ ...favorites, [id]: !favorites[id] });
   };
   return (
     <div className="details-page">
       <div className="details__top">
-        <img className="details__image" src={imageUrl} alt="Movie Poster" />
+        {details.poster_path ? (
+          <img
+            className="details__image"
+            src={`${imageRoot}/${details.poster_path}`}
+            alt="Movie Poster"
+          />
+        ) : null}
 
         <div className="details__info">
           <div className="details__info-top">
-            <Score score={score} />
-            <Favorite isFavorite={isFavorite} onClick={clickFavorite} />
+            <Score score={details.popularity} />
+            <Favorite isFavorite={favorites[id]} onClick={clickFavorite} />
           </div>
           <div className="details__info-bottom">
-            <div>{releaseDate}</div>
+            <div>{details.releaseDate}</div>
           </div>
         </div>
       </div>
