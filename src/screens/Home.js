@@ -9,7 +9,8 @@ import Loading from "../components/Loading";
 function Home({ year }) {
   const store = useContext(StoreContext);
   useEffect(() => {
-    store.fetchMovies(year);
+    // only fetch if we don't have movies yet
+    if (!store.movies.length) store.fetchMovies(year);
   }, [year]);
 
   return useObserver(() => (
