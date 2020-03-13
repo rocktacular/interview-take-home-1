@@ -1,40 +1,33 @@
-import React, { useEffect, useContext } from "react";
-import { useObserver } from "mobx-react-lite";
-import { StoreContext } from "../stores/AppStore";
-
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import MovieCard from "../components/MovieCard";
-import Loading from "../components/Loading";
+import TMDB from "../services/TMDB";
 
 function Home({ year }) {
-  const store = useContext(StoreContext);
+  const [results, setResults] = useState([]);
   useEffect(() => {
-    // only fetch if we don't have movies yet
-    if (!store.movies.length) store.fetchMovies(year);
+    TMDB.discover(year).then(res => {
+      setResults(res);
+    });
   }, [year]);
-
-  return useObserver(() => (
+  return (
     <div className="home-page">
       <div className="results">
-        {store.isLoading ? (
-          <Loading />
-        ) : (
-          store.movies.map((movie, idx) => {
-            return (
-              <MovieCard
-                key={`movie-${idx}`}
-                id={movie.id}
-                title={movie.title}
-                score={movie.popularity}
-                imageUrl={movie.poster_path}
-                releaseDate={movie.release_date}
-              />
-            );
-          })
-        )}
+        {results.map((movie, idx) => {
+          return (
+            <MovieCard
+              key={`movie-${idx}`}
+              id={movie.id}
+              title={movie.title}
+              score={movie.popularity}
+              imageUrl={movie.poster_path}
+              releaseDate={movie.release_date}
+            />
+          );
+        })}
       </div>
     </div>
-  ));
+  );
 }
 
 export default Home;
