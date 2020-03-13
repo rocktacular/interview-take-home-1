@@ -18,12 +18,7 @@ function MovieCard({ title, score, imageUrl, releaseDate, id }) {
         </div>
         <div className="card__center">
           <div>{releaseDate}</div>
-          <Link
-            to={{
-              pathname: `/details/${id}`,
-              state: { title, imageUrl: fullImageUrl, score, releaseDate }
-            }}
-          >
+          <Link to={`/details/${id}`}>
             <div className="button__details">
               <div>DETAILS</div>
             </div>

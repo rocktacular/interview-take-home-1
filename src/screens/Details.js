@@ -30,7 +30,9 @@ function Details({ setShowBack, setTitle, details, setDetails }) {
               src={`${imageRoot}/${details[id].poster_path}`}
               alt="Movie Poster"
             />
-          ) : null}
+          ) : (
+            <div className="details__image"></div>
+          )}
 
           <div className="details__info">
             <div className="details__info-top">
