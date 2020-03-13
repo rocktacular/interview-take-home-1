@@ -36,7 +36,7 @@ function App() {
         });
         setDetails(newDetails);
       })
-      .catch(err => alert(err));
+      .catch(err => alert(err)); // basic error handling. would probably have some state variable for dynamic error presentation to fit with design
   }, []);
   return (
     <Router>

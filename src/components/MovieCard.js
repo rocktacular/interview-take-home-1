@@ -17,6 +17,7 @@ function MovieCard({ title, score, imageUrl, releaseDate, id }) {
           <img src={fullImageUrl} className="card__image" alt="Movie Poster" />
         </div>
         <div className="card__center">
+          {/* would probably format this according to design. might require use of Moment.js */}
           <div>{releaseDate}</div>
           <Link to={`/details/${id}`}>
             <div className="button__details">
