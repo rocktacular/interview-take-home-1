@@ -1,33 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
+import { useObserver } from "mobx-react-lite";
+import { StoreContext } from "../stores/AppStore";
+
 import "./Home.css";
 import MovieCard from "../components/MovieCard";
-import TMDB from "../services/TMDB";
+import Loading from "../components/Loading";
 
 function Home({ year }) {
-  const [results, setResults] = useState([]);
+  const store = useContext(StoreContext);
   useEffect(() => {
-    TMDB.discover(year).then(res => {
-      setResults(res);
-    });
+    store.fetchMovies(year);
   }, [year]);
-  return (
+
+  return useObserver(() => (
     <div className="home-page">
       <div className="results">
-        {results.map((movie, idx) => {
-          return (
-            <MovieCard
-              key={`movie-${idx}`}
-              id={movie.id}
-              title={movie.title}
-              score={movie.popularity}
-              imageUrl={movie.poster_path}
-              releaseDate={movie.release_date}
-            />
-          );
-        })}
+        {store.isLoading ? (
+          <Loading />
+        ) : (
+          store.movies.map((movie, idx) => {
+            return (
+              <MovieCard
+                key={`movie-${idx}`}
+                id={movie.id}
+                title={movie.title}
+                score={movie.popularity}
+                imageUrl={movie.poster_path}
+                releaseDate={movie.release_date}
+              />
+            );
+          })
+        )}
       </div>
     </div>
-  );
+  ));
 }
 
 export default Home;
