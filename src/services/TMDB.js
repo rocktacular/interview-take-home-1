@@ -7,10 +7,5 @@ export default {
     );
     const json = await res.json();
     return json.results;
-  },
-  details: async function(id) {
-    const res = await fetch(`${rootUrl}/movie/${id}?api_key=${apiKey}`);
-    const json = await res.json();
-    return json;
   }
 };

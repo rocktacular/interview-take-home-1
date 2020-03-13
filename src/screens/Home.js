@@ -1,20 +1,13 @@
 import React, { useEffect } from "react";
 import "./Home.css";
 import MovieCard from "../components/MovieCard";
-import TMDB from "../services/TMDB";
 
-function Home({ year, setShowBack, setTitle, movies, setMovies }) {
+function Home({ movies, setTitle, setShowBack }) {
+  // SET HEADER
   useEffect(() => {
     setTitle("Movies");
     setShowBack(false);
-
-    // if not already loaded, fetch movies
-    if (!movies.length) {
-      TMDB.discover(year).then(res => {
-        setMovies(res);
-      });
-    }
-  }, [year]);
+  });
   return (
     <div className="home-page">
       <div className="results">

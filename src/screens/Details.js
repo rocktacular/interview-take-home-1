@@ -1,26 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./Details.css";
-import TMDB from "../services/TMDB";
 import Score from "../components/Score";
 import Favorite from "../components/Favorite";
 
 import { imageRoot } from "../components/MovieCard";
 
-function Details({ setShowBack, setTitle, favorites, setFavorites }) {
-  // FETCH DATA
+function Details({ setShowBack, setTitle, favorites, setFavorites, details }) {
+  // SET HEADER
   const { id } = useParams();
   useEffect(() => {
     setShowBack(true);
-    setTitle("");
-    TMDB.details(id).then(res => {
-      setDetails(res);
-      setTitle(res.title);
-    });
-  }, [id]);
-
-  // STATE
-  const [details, setDetails] = useState("");
+    setTitle(details[id] && details[id].title);
+  }, [id, details]);
 
   // HANDLERS
   const clickFavorite = () => {
@@ -29,25 +21,27 @@ function Details({ setShowBack, setTitle, favorites, setFavorites }) {
   return (
     <div className="details-page">
       <div className="details__top">
-        {details.poster_path ? (
+        {details[id] && details[id].poster_path ? (
           <img
             className="details__image"
-            src={`${imageRoot}/${details.poster_path}`}
+            src={`${imageRoot}/${details[id].poster_path}`}
             alt="Movie Poster"
           />
         ) : null}
 
         <div className="details__info">
           <div className="details__info-top">
-            <Score score={details.popularity} />
+            <Score score={details[id] && details[id].popularity} />
             <Favorite isFavorite={favorites[id]} onClick={clickFavorite} />
           </div>
           <div className="details__info-bottom">
-            <div>{details.releaseDate}</div>
+            <div>{details[id] && details[id].releaseDate}</div>
           </div>
         </div>
       </div>
-      <div className="details__bottom">{details.overview}</div>
+      <div className="details__bottom">
+        {details[id] && details[id].overview}
+      </div>
     </div>
   );
 }
