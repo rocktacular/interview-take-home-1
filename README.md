@@ -21,7 +21,7 @@ This was a take-home test for an interview for a front-end position. You are giv
 
 Here's a screenshot of what I ended up with.
 
-![image](https://user-images.githubusercontent.com/10144236/77807732-b4bcec80-7056-11ea-96ff-fa2ef184a28c.png)
+<img src="https://user-images.githubusercontent.com/10144236/77807732-b4bcec80-7056-11ea-96ff-fa2ef184a28c.png" width="200" />
 
 ---
 
