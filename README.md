@@ -7,6 +7,23 @@ REACT_APP_TMDB_API_URL = "<your api key>"
 This key is accessed as `process.env.REACT_APP_TMDB_API_URL` in **src/services/TMDB.js**. See the [Docs](https://create-react-app.dev/docs/adding-custom-environment-variables/) for details.
 
 ---
+## Assignment (Take Home)
+
+This was a take-home test for an interview for a front-end position. You are given 3 days to complete it.
+
+### Requirements
+1. List top X movies from YYYY year in descending order of score
+2. Include thumbnail image, score, release date, and details link
+3. Details link should navigate to separate page that shows the above plus overview text
+4. User should be able to favorite/unfavorite on Details page
+5. Favorite/unfavorite should persist through one load of the app
+6. Given some wireframes, follow general layout structure
+
+Here's a screenshot of what I ended up with.
+
+![image](https://user-images.githubusercontent.com/10144236/77807732-b4bcec80-7056-11ea-96ff-fa2ef184a28c.png)
+
+---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
